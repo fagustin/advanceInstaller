@@ -12,7 +12,7 @@ jobs:
         with:
           advinst-version: '21.2.1'
           advinst-enable-automation: 'true'
-          aip-path: ${{ github.workspace }}\OXXO-POC.aip
+          aip-path: ${{ github.workspace }}\OXXO-POCv2.aip
           aip-build-name: DefaultBuild
           aip-package-name: setup.msi
           aip-output-dir:  ${{ github.workspace }}\setup
