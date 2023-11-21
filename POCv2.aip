@@ -234,6 +234,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDialogComponent">
     <ROW Dialog="PreparePrereqDlg" HCentering="50" VCentering="50" Width="450" Height="360" Attributes="1" Title="[ProductName] [Setup] - [ProductVersion]]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="PreparePrereqDlg"/>
+    <ROW Dialog="WelcomePrereqDlg" HCentering="50" VCentering="50" Width="450" Height="360" Attributes="3" Title="[ProductName] [Setup] - [ProductVersion] - [GLOBAL_VERSION]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="WelcomePrereqDlg"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
