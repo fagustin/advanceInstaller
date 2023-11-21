@@ -22,7 +22,7 @@ jobs:
 
       - name: prepare directory
         run: |
-          copy ${{ github.workspace }}\AIP/scr/CustomActions/*.* ${{ github.workspace }}\CustomActions
+          xcopy ${{ github.workspace }}\AIP/scr/CustomActions ${{ github.workspace }}\CustomActions /s
           cd  ${{ github.workspace }}\CustomActions
           dir
       - name: Build AIP
