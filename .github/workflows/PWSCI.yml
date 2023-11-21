@@ -1,5 +1,11 @@
 name: Powershell Automation Demo
-on: [workflow_dispatch]
+on: 
+  [workflow_dispatch]:
+     inputs:
+        version:
+          description: Numero de versión instalador
+          type: string
+          required: true
 jobs:
   advinst-com-demo:
     runs-on: windows-latest
@@ -23,10 +29,10 @@ jobs:
           $project = $advinst.LoadProject($aipPath);
           $productDetails = $project.ProductDetails;
           # Bump the ProductVersion
-          $productDetails.Version = "1.2.0";
+          $productDetails.Version = "${{ inputs.version}}";
           Write-Host "Version: $productDetails.Version";
           $aboutProp = $project.PropertyComponent.FindProperty("GLOBAL_VERSION")
-          $aboutProp.value = "GLOBAL_VERSION_VALUE"
+          $aboutProp.value = "GLOBAL_VERSION_VALUE_TEST"
           # Build the project
           $project.Build();
       - name: Publish setup artifact
