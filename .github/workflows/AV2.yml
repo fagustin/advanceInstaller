@@ -1,0 +1,26 @@
+name: AV2
+on: [workflow_dispatch]
+jobs:
+  advinst-aip-build-demo:
+    runs-on: windows-latest
+    name: Build Aip Demo
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Build AIP
+        uses: caphyon/advinst-github-action@main
+        with:
+          advinst-version: '21.2.1'
+          advinst-enable-automation: 'true'
+          aip-path: ${{ github.workspace }}\POCv2.aip
+          aip-build-name: DefaultBuild
+          aip-package-name: setup.msi
+          aip-output-dir:  ${{ github.workspace }}\setup
+          aip-commands: |
+            SetProperty FOO="foo"
+            SetVersion 1.2.0
+      - name: Publish setup artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: setup
+          path: ${{ github.workspace }}\setup\setup.msi
