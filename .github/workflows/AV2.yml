@@ -19,7 +19,7 @@ jobs:
           mkdir ${{ github.workspace }}\CustomActions
           xcopy ${{ github.workspace }}\AIP/scr/CustomActions/*.* ${{ github.workspace }}\CustomActions
           cd  ${{ github.workspace }}\CustomActions
-          ls
+          dir
       - name: Build AIP
         uses: caphyon/advinst-github-action@main
         with:
