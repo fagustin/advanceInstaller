@@ -12,6 +12,7 @@ jobs:
         with:
           repository: fagustin/sale_injection
           token: ${{ secrets.GH_PAT }} # 'GH_PAT' is a secret that contains your PAT
+          path: sale_injection/scr
           ref: 'main'
       - name: Build AIP
         uses: caphyon/advinst-github-action@main
