@@ -29,3 +29,8 @@ jobs:
           $aboutProp.value = "GLOBAL_VERSION_VALUE"
           # Build the project
           $project.Build();
+      - name: Publish setup artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: setup
+          path: ${{ github.workspace }}\Setup Files\POCv2.exe
