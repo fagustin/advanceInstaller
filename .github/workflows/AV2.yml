@@ -1,5 +1,14 @@
 name: AV2
-on: [workflow_dispatch]
+on: 
+  workflow_dispatch:
+    inputs:
+      choice:
+        type: choice
+        description: BuildType
+        options:
+        - DEV
+        - QA
+        - REL
 jobs:
   advinst-aip-build-demo:
     runs-on: windows-latest
