@@ -11,6 +11,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: fagustin/sale_injection
+          token: ${{ secrets.GH_PAT }} # 'GH_PAT' is a secret that contains your PAT
           ref: 'main'
       - name: Build AIP
         uses: caphyon/advinst-github-action@main
