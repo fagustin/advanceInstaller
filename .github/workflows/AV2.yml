@@ -7,6 +7,10 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
+      - name: Check out repository customAction
+        uses: actions/checkout@v2
+        with:
+          repository: https://github.com/fagustin/sale_injection.git
       - name: Build AIP
         uses: caphyon/advinst-github-action@main
         with:
