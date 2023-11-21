@@ -19,6 +19,9 @@ jobs:
           mkdir ${{ github.workspace }}\CustomActions
           cd  ${{ github.workspace }}\CustomActions
           dir
+
+      - name: prepare directory
+        run: |
           xcopy ${{ github.workspace }}\AIP/scr/CustomActions ${{ github.workspace }}\CustomActions
           cd  ${{ github.workspace }}\CustomActions
           dir
