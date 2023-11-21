@@ -14,10 +14,10 @@
     <ROW Property="ARPNOREPAIR" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="GLOBAL_VERSION" Value="NULL"/>
     <ROW Property="Manufacturer" Value="Axity"/>
-    <ROW Property="ProductCode" Value="2058:{3C8958F0-40FE-4CF8-909A-6673B26D041F} " Type="16"/>
+    <ROW Property="ProductCode" Value="2058:{CB1EA030-D5EC-428D-A59F-4FB80F7B5230} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="MyApp"/>
-    <ROW Property="ProductVersion" Value="1.0.1" Options="32"/>
+    <ROW Property="ProductVersion" Value="1.0.2" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{694E56F3-7299-4511-8114-5CA37B07ADFC}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -250,7 +250,13 @@
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDialogComponent">
+    <ROW Dialog="FolderDlg" HCentering="50" VCentering="50" Width="450" Height="360" Attributes="39" Title="[Setup] de [ProductName] [ProductVersion]-[GLOBAL_VERSION]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="FolderDlg"/>
+    <ROW Dialog="PrepareDlg" HCentering="50" VCentering="50" Width="450" Height="360" Attributes="1" Title="[Setup] de [ProductName] [ProductVersion]-[GLOBAL_VERSION]" Control_Default="Cancel" Control_Cancel="Cancel" MsiKey="PrepareDlg"/>
     <ROW Dialog="PreparePrereqDlg" HCentering="50" VCentering="50" Width="450" Height="360" Attributes="1" Title="[ProductName] [Setup] - [ProductVersion]]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="PreparePrereqDlg"/>
+    <ROW Dialog="ProgressDlg" HCentering="50" VCentering="50" Width="450" Height="360" Attributes="1" Title="[Setup] de [ProductName] [ProductVersion]-[GLOBAL_VERSION]" Control_Default="Cancel" Control_Cancel="Cancel" MsiKey="ProgressDlg"/>
+    <ROW Dialog="SetupTypeDlg" HCentering="50" VCentering="50" Width="450" Height="360" Attributes="3" Title="[Setup] de [ProductName] [ProductVersion]-[GLOBAL_VERSION]" Control_Default="TypicalButton" Control_Cancel="Cancel" MsiKey="SetupTypeDlg"/>
+    <ROW Dialog="VerifyReadyDlg" HCentering="50" VCentering="50" Width="450" Height="360" Attributes="35" Title="[Setup] de [ProductName] [ProductVersion]-[GLOBAL_VERSION]" Control_Default="Install" Control_Cancel="Cancel" MsiKey="VerifyReadyDlg"/>
+    <ROW Dialog="WelcomeDlg" HCentering="50" VCentering="50" Width="450" Height="360" Attributes="3" Title="[Setup] de [ProductName] [ProductVersion]-[GLOBAL_VERSION]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="WelcomeDlg"/>
     <ROW Dialog="WelcomePrereqDlg" HCentering="50" VCentering="50" Width="450" Height="360" Attributes="3" Title="[ProductName] [Setup] - [ProductVersion] - [GLOBAL_VERSION]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="WelcomePrereqDlg"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
