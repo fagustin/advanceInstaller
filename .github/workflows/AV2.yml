@@ -10,10 +10,14 @@ jobs:
       - name: Check out repository customAction
         uses: actions/checkout@v4
         with:
-          repository: fagustin/sale_injection
+          repository: fagustin/AIP
           token: ${{ secrets.GH_PAT }} # 'GH_PAT' is a secret that contains your PAT
-          path: sale_injection/scr
+          path: AIP/scr
           ref: 'main'
+      - name: prepare directory
+        run: |
+          mkdir ${{ github.workspace }}\CustomActions
+          copy ${{ github.workspace }}\AIP/scr/CustomActions ${{ github.workspace }}\CustomActions
       - name: Build AIP
         uses: caphyon/advinst-github-action@main
         with:
