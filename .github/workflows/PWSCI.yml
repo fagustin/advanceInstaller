@@ -1,11 +1,11 @@
 name: Powershell Automation Demo
 on: 
-  [workflow_dispatch]:
-     inputs:
-        version:
-          description: Numero de versión instalador
-          type: string
-          required: true
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Numero de versión instalador
+        type: string
+        required: true
 jobs:
   advinst-com-demo:
     runs-on: windows-latest
