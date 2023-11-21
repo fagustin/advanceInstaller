@@ -25,7 +25,7 @@ jobs:
           # Bump the ProductVersion
           $productDetails.Version = "1.2.0";
           Write-Host "Version: $productDetails.Version";
-          $aboutProp = $aipPath.PropertyComponent.FindProperty("GLOBAL_VERSION")
+          $aboutProp = $project.PropertyComponent.FindProperty("GLOBAL_VERSION")
           $aboutProp.value = "GLOBAL_VERSION_VALUE"
           # Build the project
           $project.Build();
