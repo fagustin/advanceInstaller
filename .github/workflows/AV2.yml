@@ -17,7 +17,9 @@ jobs:
       - name: prepare directory
         run: |
           mkdir ${{ github.workspace }}\CustomActions
-          xcopy ${{ github.workspace }}\AIP/scr/CustomActions/*.* ${{ github.workspace }}\CustomActions
+          cd  ${{ github.workspace }}\CustomActions
+          dir
+          xcopy ${{ github.workspace }}\AIP/scr/CustomActions ${{ github.workspace }}\CustomActions
           cd  ${{ github.workspace }}\CustomActions
           dir
       - name: Build AIP
