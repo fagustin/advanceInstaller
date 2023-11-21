@@ -6,9 +6,9 @@ jobs:
     name: Build Aip Demo
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Check out repository customAction
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: fagustin/sale_injection
           token: ${{ secrets.GH_PAT }} # 'GH_PAT' is a secret that contains your PAT
