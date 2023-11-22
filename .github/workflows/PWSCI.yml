@@ -19,7 +19,20 @@ jobs:
     name: Advinst Automation Demo
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4
+      - name: Check out repository customAction
+        uses: actions/checkout@v4
+        with:
+          repository: fagustin/AIP
+          token: ${{ secrets.GH_PAT }} # 'GH_PAT' is a secret that contains your PAT
+          path: AIP/scr
+          ref: 'main'
+      - name: prepare directory
+        run: |
+          mkdir ${{ github.workspace }}\CustomActions
+          cd  ${{ github.workspace }}\CustomActions
+          xcopy ${{ github.workspace }}\AIP\scr\CustomActions ${{ github.workspace }}\CustomActions /s
+          dir
       - name: Deploy Advinst
         uses: caphyon/advinst-github-action@main
         with:
@@ -40,11 +53,11 @@ jobs:
           Write-Host "Version: $productDetails.Version";
           $aboutProp = $project.PropertyComponent.FindProperty("GLOBAL_VERSION")
           $aboutProp.value = "GLOBAL_VERSION_VALUE_TEST"
-          AdvancedInstaller /edit  $aipPath /SetPackageName "DS50Patch$version${{ inputs.choice}}"
+          AdvancedInstaller /edit  $aipPath /SetPackageName "POCv2_${{ inputs.choice}}.exe"
           # Build the project
           $project.Build();
       - name: Publish setup artifact
         uses: actions/upload-artifact@v2
         with:
           name: setup
-          path: ${{ github.workspace }}\Setup Files\POCv2.exe
+          path: ${{ github.workspace }}\Setup Files\POCv2_${{ inputs.choice}}.exe
