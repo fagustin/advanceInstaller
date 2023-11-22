@@ -53,10 +53,17 @@ jobs:
           Write-Host "Version: $productDetails.Version";
           $aboutProp = $project.PropertyComponent.FindProperty("GLOBAL_VERSION")
           $aboutProp.value = "GLOBAL_VERSION_VALUE_TEST"
-          $DBScripts = (dir "E:\github-oxxo\OXXO-POC\Scripts\*-S*").name -join ("&")
-          $RDBScripts = (dir "E:\github-oxxo\OXXO-POC\Scripts\*-R*").name -join ("&")
-          $DBScripts | Out-File E:\github-oxxo\OXXO-POC\Scripts\$version.log
-          $RDBScripts | Out-File E:\github-oxxo\OXXO-POC\Scripts\$version.log
+          $DBScripts = (dir "${{ github.workspace }}\Scripts\*-S*").name -join ("&")
+          $RDBScripts = (dir "${{ github.workspace }}\Scripts\*-R*").name -join ("&")
+          $DBScripts | Out-File ${{ github.workspace }}\Scripts\DBScripts$version.log
+          $RDBScripts | Out-File ${{ github.workspace }}\Scripts\RDBScripts$version.log
+          if (((Get-Content ${{ github.workspace }}\Scripts\DBScripts$version.log).length) -gt "0")
+          {
+            $propRDBScript = $project.PropertyComponent.FindProperty("R_PATCH_SCRIPTS")
+            $propRDBScript.value = $RDBScripts
+            $propSDBScript = $project.PropertyComponent.FindProperty("S_PATCH_SCRIPTS")
+            $propSDBScript.value = $DBScripts
+          }
           # Build the project
           $project.Build();
       - name: Publish setup artifact
