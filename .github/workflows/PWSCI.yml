@@ -70,4 +70,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: setup
-          path: ${{ github.workspace }}\Setup Files\POCv2_${{ inputs.choice}}.exe
+          path: ${{ github.workspace }}\Setup Files\POCv2.exe
