@@ -53,8 +53,10 @@ jobs:
           Write-Host "Version: $productDetails.Version";
           $aboutProp = $project.PropertyComponent.FindProperty("GLOBAL_VERSION")
           $aboutProp.value = "GLOBAL_VERSION_VALUE_TEST"
-          [IMsiBuild]$build = [IMsiBuild]$project.BuildComponent.SelectedBuild
-          build.PackageName = "POCv2_${{ inputs.choice}}.exe"
+          $DBScripts = (dir "E:\github-oxxo\OXXO-POC\Scripts\*-S*").name -join ("&")
+          $RDBScripts = (dir "E:\github-oxxo\OXXO-POC\Scripts\*-R*").name -join ("&")
+          $DBScripts | Out-File E:\github-oxxo\OXXO-POC\Scripts\$version.log
+          $RDBScripts | Out-File E:\github-oxxo\OXXO-POC\Scripts\$version.log
           # Build the project
           $project.Build();
       - name: Publish setup artifact
