@@ -185,6 +185,7 @@
     <ROW Dialog_="WelcomeDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="WelcomeDlg#Bitmap"/>
     <ROW Dialog_="WelcomeDlg" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196610" Text="Bienvenido al [Wizard] de [ProductName] custom" TextStyle="TitleFont" Order="600" MsiKey="WelcomeDlg#Title"/>
     <ROW Dialog_="WelcomeDlg" Control="Edit_1" Type="Edit" X="13" Y="115" Width="141" Height="159" Attributes="65539" Property="EDIT_1_PROP" Text="[R_PATCH_SCRIPTS]  ----&gt;  [S_PATCH_SCRIPTS]" Order="900"/>
+    <ROW Dialog_="WelcomeDlg" Control="Text_1" Type="Text" X="304" Y="112" Width="123" Height="138" Attributes="65539" Property="TEXT_1_PROP" Text="[R_PATCH_SCRIPTS] - [S_PATCH_SCRIPTS]" Order="1000"/>
     <ROW Dialog_="WelcomePrereqDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="WelcomePrereqDlg#Bitmap"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
