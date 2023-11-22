@@ -57,7 +57,7 @@ jobs:
           $RDBScripts = (dir "${{ github.workspace }}\Scripts\*-R*").name -join ("&")
           Write-Host $DBScripts
           Write-Host $RDBScripts
-          $DBScripts | Out-File ${{ github.workspace }}\Scripts\DBScripts$version.log
+          $DBScripts | Out-File ${{ github.workspace }}\Scripts\DBScripts${{ inputs.version }}.log
           $RDBScripts | Out-File ${{ github.workspace }}\Scripts\RDBScripts${{ inputs.version }}.log
           if (((Get-Content ${{ github.workspace }}\Scripts\DBScripts${{ inputs.version }}.log).length) -gt "0")
           {
