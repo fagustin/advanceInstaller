@@ -14,10 +14,13 @@
     <ROW Property="ARPNOREPAIR" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="GLOBAL_VERSION" Value="NULL"/>
     <ROW Property="Manufacturer" Value="Axity"/>
+    <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
     <ROW Property="ProductCode" Value="2058:{CB1EA030-D5EC-428D-A59F-4FB80F7B5230} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="MyApp"/>
     <ROW Property="ProductVersion" Value="1.0.2" Options="32"/>
+    <ROW Property="R_PATCH_SCRIPTS" Value="Empty"/>
+    <ROW Property="S_PATCH_SCRIPTS" Value="Empty"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{694E56F3-7299-4511-8114-5CA37B07ADFC}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -78,7 +81,7 @@
     <ROW Action="AI_CleanPrePrereq" Condition="AI_BOOTSTRAPPER AND (NOT AI_PrereqsFulfilled)" Sequence="699"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="Setup Files" Languages="es_MX" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" ExtUI="true" UseLargeSchema="true"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="Setup Files" Languages="es_MX" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" ExtUI="true" UseLargeSchema="true" UACExecutionLevel="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
     <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
@@ -129,30 +132,60 @@
     <ROW Name="tempFiles.dll" SourcePath="&lt;AI_CUSTACTS&gt;tempFiles.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
+    <ROW Dialog_="AdminBrowseDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048577" Text="[DialogBitmap]" Order="100" MsiKey="AdminBrowseDlg#Bitmap"/>
     <ROW Dialog_="AdminBrowseDlg" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196611" Text="Cambiar el corriente destino de carpeta" TextStyle="TitleFont" Order="1100" TextLocId="Control.Text.AdminBrowseDlg#Title" MsiKey="AdminBrowseDlg#Title"/>
+    <ROW Dialog_="AdminInstallPointDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048577" Text="[DialogBitmap]" Order="100" MsiKey="AdminInstallPointDlg#Bitmap"/>
     <ROW Dialog_="AdminInstallPointDlg" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196611" Text="Seleccione una ubicación de red para la imagen del servidor del producto [ProductName]" TextStyle="TitleFont" Order="800" TextLocId="Azure.Control.Text.AdminInstallPointDlg#Title" MsiKey="AdminInstallPointDlg#Title"/>
+    <ROW Dialog_="AdminWelcomeDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048577" Text="[DialogBitmap]" Order="100" MsiKey="AdminWelcomeDlg#Bitmap"/>
     <ROW Dialog_="AdminWelcomeDlg" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196611" Text="Bienvenido al [Wizard] de [ProductName]" TextStyle="TitleFont" Order="500" TextLocId="Control.Text.AdminWelcomeDlg#Title" MsiKey="AdminWelcomeDlg#Title"/>
+    <ROW Dialog_="BrowseDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048577" Text="[DialogBitmap]" Order="100" MsiKey="BrowseDlg#Bitmap"/>
+    <ROW Dialog_="CustomizeDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="CustomizeDlg#Bitmap"/>
+    <ROW Dialog_="DiskCostDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="DiskCostDlg#Bitmap"/>
+    <ROW Dialog_="ExitDialog" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="ExitDialog#Bitmap"/>
+    <ROW Dialog_="FatalError" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="FatalError#Bitmap"/>
     <ROW Dialog_="FatalError" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196610" Text="El [Wizard] de [ProductName] paró prematuramente" TextStyle="TitleFont" Order="800" TextLocId="Control.Text.FatalError#Title" MsiKey="FatalError#Title"/>
+    <ROW Dialog_="FilesInUse" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="FilesInUse#Bitmap"/>
+    <ROW Dialog_="FolderDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="FolderDlg#Bitmap"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="MaintenanceTypeDlg#Bitmap"/>
     <ROW Dialog_="MaintenanceTypeDlg" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196610" Text="Cambiar la instalación de [ProductName]" TextStyle="TitleFont" Order="1200" TextLocId="Azure.Control.Text.MaintenanceTypeDlg#Title" MsiKey="MaintenanceTypeDlg#Title"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="MaintenanceWelcomeDlg#Bitmap"/>
+    <ROW Dialog_="MsiRMFilesInUse" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="MsiRMFilesInUse#Bitmap"/>
     <ROW Dialog_="MsiRMFilesInUse" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196610" Text="Algunos archivos que necesitan ser actualizados se encuentran en uso" TextStyle="TitleFont" Order="800" TextLocId="Azure.Control.Text.MsiRMFilesInUse#Title" MsiKey="MsiRMFilesInUse#Title"/>
+    <ROW Dialog_="OutOfDiskDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="OutOfDiskDlg#Bitmap"/>
     <ROW Dialog_="OutOfDiskDlg" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196610" Text="El espacio en disco necesario para la instalación supera el espacio disponible en disco" TextStyle="TitleFont" Order="500" TextLocId="Azure.Control.Text.OutOfDiskDlg#Title" MsiKey="OutOfDiskDlg#Title"/>
+    <ROW Dialog_="OutOfRbDiskDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="OutOfRbDiskDlg#Bitmap"/>
     <ROW Dialog_="OutOfRbDiskDlg" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196610" Text="El espacio en disco necesario para la instalación supera el espacio disponible en disco" TextStyle="TitleFont" Order="800" TextLocId="Azure.Control.Text.OutOfRbDiskDlg#Title" MsiKey="OutOfRbDiskDlg#Title"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048577" Text="[DialogBitmap]" Order="100" MsiKey="PatchWelcomeDlg#Bitmap"/>
     <ROW Dialog_="PatchWelcomeDlg" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196611" Text="Bienvenido al [ProductName] Patch [Wizard]" TextStyle="TitleFont" Order="500" TextLocId="Control.Text.PatchWelcomeDlg#Title" MsiKey="PatchWelcomeDlg#Title"/>
+    <ROW Dialog_="PrepareDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="300" MsiKey="PrepareDlg#Bitmap"/>
+    <ROW Dialog_="PreparePrereqDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="300" MsiKey="PreparePrereqDlg#Bitmap"/>
     <ROW Dialog_="PreparePrereqDlg" Control="Back" Type="PushButton" X="45" Y="323" Width="56" Height="28" Attributes="2" Text="[ButtonText_Back]" TextStyle="Buttons" Order="400" TextLocId="-" MsiKey="PreparePrereqDlg#Back"/>
     <ROW Dialog_="PreparePrereqDlg" Control="Next" Type="PushButton" X="350" Y="323" Width="56" Height="28" Attributes="2" Text="[ButtonText_Next]" TextStyle="Buttons" Order="500" TextLocId="-" MsiKey="PreparePrereqDlg#Next"/>
+    <ROW Dialog_="PrerequisitesDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="PrerequisitesDlg#Bitmap"/>
     <ROW Dialog_="PrerequisitesDlg" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196610" Text="Requisitos previos" TextStyle="TitleFont" Order="600" TextLocId="Control.Text.PrerequisitesDlg#Title" MsiKey="PrerequisitesDlg#Title"/>
+    <ROW Dialog_="ProgressDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="ProgressDlg#Bitmap"/>
+    <ROW Dialog_="ProgressPrereqDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="ProgressPrereqDlg#Bitmap"/>
     <ROW Dialog_="ProgressPrereqDlg" Control="Cancel" Type="PushButton" X="450" Y="0" Width="0" Height="0" Attributes="2" Text="[ButtonText_Cancel]" Order="400" TextLocId="-" MsiKey="ProgressPrereqDlg#Cancel" Options="1"/>
     <ROW Dialog_="ProgressPrereqDlg" Control="Title" Type="Text" X="45" Y="17" Width="300" Height="15" Attributes="196610" Text="[Progress1] requisitos previso para [ProductName]" TextStyle="TitleFont" Order="500" TextLocId="Control.Text.ProgressPrereqDlg#Title" MsiKey="ProgressPrereqDlg#Title"/>
     <ROW Dialog_="ProgressPrereqDlg" Control="ProgressBar" Type="ProgressBar" X="45" Y="160" Width="360" Height="14" Attributes="65534" Text="Proceso finalizado" Order="600" TextLocId="Control.Text.ProgressDlg#ProgressBar" MsiKey="ProgressPrereqDlg#ProgressBar"/>
     <ROW Dialog_="ProgressPrereqDlg" Control="Text" Type="Text" X="45" Y="55" Width="300" Height="30" Attributes="196610" Text="Por favor espere mientras el [Wizard] [Progress2] requisitos previos para [ProductName]. Ésto puede tardar algunos minutos" Order="700" TextLocId="Control.Text.ProgressPrereqDlg#Text" MsiKey="ProgressPrereqDlg#Text"/>
     <ROW Dialog_="ProgressPrereqDlg" Control="Next" Type="PushButton" X="350" Y="323" Width="56" Height="28" Attributes="2" Text="[ButtonText_Next]" TextStyle="Buttons" Order="800" TextLocId="-" MsiKey="ProgressPrereqDlg#Next"/>
+    <ROW Dialog_="ResumeDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="ResumeDlg#Bitmap"/>
     <ROW Dialog_="ResumeDlg" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196610" Text="Reanudando el [Wizard] de [ProductName]" TextStyle="TitleFont" Order="600" TextLocId="Control.Text.ResumeDlg#Title" MsiKey="ResumeDlg#Title"/>
+    <ROW Dialog_="SetupTypeDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="SetupTypeDlg#Bitmap"/>
     <ROW Dialog_="SetupTypeDlg" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196610" Text="Seleccione la instalación que desea" TextStyle="TitleFont" Order="600" TextLocId="Azure.Control.Text.SetupTypeDlg#Title" MsiKey="SetupTypeDlg#Title"/>
+    <ROW Dialog_="UserExit" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="UserExit#Bitmap"/>
     <ROW Dialog_="UserExit" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196610" Text="El [Wizard] de [ProductName] ha sido interrumpido" TextStyle="TitleFont" Order="600" TextLocId="Control.Text.UserExit#Title" MsiKey="UserExit#Title"/>
+    <ROW Dialog_="VerifyReadyDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="VerifyReadyDlg#Bitmap"/>
     <ROW Dialog_="VerifyReadyDlg" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196610" Text="Inicie la instalación de [ProductName]" TextStyle="TitleFont" Order="700" TextLocId="Azure.Control.Text.VerifyReadyDlg#Title" MsiKey="VerifyReadyDlg#Title"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="VerifyRemoveDlg#Bitmap"/>
     <ROW Dialog_="VerifyRemoveDlg" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196610" Text="Comience a eliminar [ProductName]" TextStyle="TitleFont" Order="600" TextLocId="Azure.Control.Text.VerifyRemoveDlg#Title" MsiKey="VerifyRemoveDlg#Title"/>
+    <ROW Dialog_="VerifyRepairDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="VerifyRepairDlg#Bitmap"/>
     <ROW Dialog_="VerifyRepairDlg" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196610" Text="Comienza la reparación de [ProductName]" TextStyle="TitleFont" Order="600" TextLocId="Azure.Control.Text.VerifyRepairDlg#Title" MsiKey="VerifyRepairDlg#Title"/>
+    <ROW Dialog_="WelcomeDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="WelcomeDlg#Bitmap"/>
     <ROW Dialog_="WelcomeDlg" Control="Title" Type="Text" X="45" Y="17" Width="382" Height="42" Attributes="196610" Text="Bienvenido al [Wizard] de [ProductName] custom" TextStyle="TitleFont" Order="600" MsiKey="WelcomeDlg#Title"/>
+    <ROW Dialog_="WelcomeDlg" Control="Edit_1" Type="Edit" X="13" Y="115" Width="141" Height="159" Attributes="65539" Property="EDIT_1_PROP" Text="[R_PATCH_SCRIPTS]  ----&gt;  [S_PATCH_SCRIPTS]" Order="900"/>
+    <ROW Dialog_="WelcomePrereqDlg" Control="Bitmap" Type="Bitmap" X="0" Y="1" Width="450" Height="360" Attributes="1048576" Text="[DialogBitmap]" Order="200" MsiKey="WelcomePrereqDlg#Bitmap"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
     <ROW Dialog_="FatalError" Control_="Finish" Event="DoAction" Argument="AI_RemoveTempFiles" Condition="1" Ordering="102"/>
