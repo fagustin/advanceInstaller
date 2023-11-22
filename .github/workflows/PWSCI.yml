@@ -6,6 +6,13 @@ on:
         description: Numero de versión instalador
         type: string
         required: true
+      choice:
+        type: choice
+        description: BuildType
+        options:
+        - DEV
+        - QA
+        - REL
 jobs:
   advinst-com-demo:
     runs-on: windows-latest
@@ -33,6 +40,7 @@ jobs:
           Write-Host "Version: $productDetails.Version";
           $aboutProp = $project.PropertyComponent.FindProperty("GLOBAL_VERSION")
           $aboutProp.value = "GLOBAL_VERSION_VALUE_TEST"
+          AdvancedInstaller /edit  $aipPath /SetPackageName "DS50Patch$version${{ inputs.choice}}"
           # Build the project
           $project.Build();
       - name: Publish setup artifact
