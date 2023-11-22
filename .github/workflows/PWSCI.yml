@@ -38,6 +38,7 @@ jobs:
         with:
           advinst-version: '21.2.1'
           advinst-license: ${{ secrets.ADVINST_LICENSE_KEY }}
+          aip-package-name: POCv2_${{ inputs.version }}.exe
           advinst-enable-automation: 'true'
       - name: Use Advinst Automation
         shell: pwsh
@@ -72,4 +73,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: setup
-          path: ${{ github.workspace }}\Setup Files\POCv2.exe
+          path: ${{ github.workspace }}\Setup Files\POCv2_${{ inputs.version }}.exe
