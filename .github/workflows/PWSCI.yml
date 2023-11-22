@@ -55,9 +55,11 @@ jobs:
           $aboutProp.value = "GLOBAL_VERSION_VALUE_TEST"
           $DBScripts = (dir "${{ github.workspace }}\Scripts\*-S*").name -join ("&")
           $RDBScripts = (dir "${{ github.workspace }}\Scripts\*-R*").name -join ("&")
+          Write-Host $DBScripts
+          Write-Host $RDBScripts
           $DBScripts | Out-File ${{ github.workspace }}\Scripts\DBScripts$version.log
-          $RDBScripts | Out-File ${{ github.workspace }}\Scripts\RDBScripts$version.log
-          if (((Get-Content ${{ github.workspace }}\Scripts\DBScripts$version.log).length) -gt "0")
+          $RDBScripts | Out-File ${{ github.workspace }}\Scripts\RDBScripts${{ inputs.version }}.log
+          if (((Get-Content ${{ github.workspace }}\Scripts\DBScripts${{ inputs.version }}.log).length) -gt "0")
           {
             $propRDBScript = $project.PropertyComponent.FindProperty("R_PATCH_SCRIPTS")
             $propRDBScript.value = $RDBScripts
