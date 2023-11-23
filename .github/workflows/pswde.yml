@@ -27,7 +27,7 @@ jobs:
           token: ${{ secrets.GH_PAT }} # 'GH_PAT' is a secret that contains your PAT
           path: AIP/scr
           ref: 'main'
-      - name: Check out repository customAction
+      - name: Check out repository powershell script
         uses: actions/checkout@v4
         with:
           repository: fagustin/powershellscript
