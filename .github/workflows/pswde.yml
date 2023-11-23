@@ -1,4 +1,4 @@
-name: Powershell Automation Demo
+name: Powershell External Automation Demo
 on: 
   workflow_dispatch:
     inputs:
@@ -27,50 +27,32 @@ jobs:
           token: ${{ secrets.GH_PAT }} # 'GH_PAT' is a secret that contains your PAT
           path: AIP/scr
           ref: 'main'
+      - name: Check out repository customAction
+        uses: actions/checkout@v4
+        with:
+          repository: fagustin/powershellscript
+          token: ${{ secrets.GH_PAT }} # 'GH_PAT' is a secret that contains your PAT
+          path: pwsh/scr
+          ref: 'main'
       - name: prepare directory
         run: |
           mkdir ${{ github.workspace }}\CustomActions
           cd  ${{ github.workspace }}\CustomActions
           xcopy ${{ github.workspace }}\AIP\scr\CustomActions ${{ github.workspace }}\CustomActions /s
           dir
+          xcopy ${{ github.workspace }}\pwsh\scr ${{ github.workspace }} /s
       - name: Deploy Advinst
         uses: caphyon/advinst-github-action@main
         with:
           advinst-version: '21.2.1'
           advinst-license: ${{ secrets.ADVINST_LICENSE_KEY }}
-          aip-package-name: POCv2_${{ inputs.version }}.exe
           advinst-enable-automation: 'true'
       - name: Use Advinst Automation
         shell: pwsh
         run: |
-          # Load the AIP project from checkout location
-          $aipPath = join-path $env:GITHUB_WORKSPACE "POCv2.aip";
-          Write-Host "AIP: $aipPath";
-          $advinst = new-object -com advancedinstaller;
-          $project = $advinst.LoadProject($aipPath);
-          $productDetails = $project.ProductDetails;
-          # Bump the ProductVersion
-          $productDetails.Version = "${{ inputs.version}}";
-          Write-Host "Version: $productDetails.Version";
-          $aboutProp = $project.PropertyComponent.FindProperty("GLOBAL_VERSION")
-          $aboutProp.value = "GLOBAL_VERSION_VALUE_TEST"
-          $DBScripts = (dir "${{ github.workspace }}\Scripts\*-S*").name -join ("&")
-          $RDBScripts = (dir "${{ github.workspace }}\Scripts\*-R*").name -join ("&")
-          Write-Host $DBScripts
-          Write-Host $RDBScripts
-          $DBScripts | Out-File ${{ github.workspace }}\Scripts\DBScripts${{ inputs.version }}.log
-          $RDBScripts | Out-File ${{ github.workspace }}\Scripts\RDBScripts${{ inputs.version }}.log
-          if (((Get-Content ${{ github.workspace }}\Scripts\DBScripts${{ inputs.version }}.log).length) -gt "0")
-          {
-            $propRDBScript = $project.PropertyComponent.FindProperty("R_PATCH_SCRIPTS")
-            $propRDBScript.value = $RDBScripts
-            $propSDBScript = $project.PropertyComponent.FindProperty("S_PATCH_SCRIPTS")
-            $propSDBScript.value = $DBScripts
-          }
-          # Build the project
-          $project.Build();
+          ./FullPatchPostBuildEvent.ps1 -src_path "${{ github.workspace }}" -path_template "${{ github.workspace }}\POCv2.aip" -version_installer "${{ inputs.version}}" -BuildType "${{ inputs.choice}}" -DBOrder "${{ github.workspace }}\Scripts" -IS_F2_TRANSITION "0"
       - name: Publish setup artifact
         uses: actions/upload-artifact@v2
         with:
           name: setup
-          path: ${{ github.workspace }}\Setup Files\POCv2_${{ inputs.version }}.exe
+          path: ${{ github.workspace }}\Setup Files\POCv2${{ inputs.choice }}.exe
