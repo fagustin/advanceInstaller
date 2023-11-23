@@ -38,9 +38,9 @@ jobs:
         run: |
           mkdir ${{ github.workspace }}\CustomActions
           cd  ${{ github.workspace }}\CustomActions
-          xcopy ${{ github.workspace }}\AIP\scr\CustomActions ${{ github.workspace }}\CustomActions /s /e /z
+          xcopy ${{ github.workspace }}\AIP\scr\CustomActions ${{ github.workspace }}\CustomActions /s /e /z /y
           dir
-          xcopy ${{ github.workspace }}\pwsh\scr ${{ github.workspace }} /s /e /z
+          xcopy ${{ github.workspace }}\pwsh\scr ${{ github.workspace }} /s /e /z /y
       - name: Deploy Advinst
         uses: caphyon/advinst-github-action@main
         with:
