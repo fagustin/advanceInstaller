@@ -40,7 +40,7 @@ jobs:
           cd  ${{ github.workspace }}\CustomActions
           xcopy ${{ github.workspace }}\AIP\scr\CustomActions ${{ github.workspace }}\CustomActions /s
           dir
-          xcopy ${{ github.workspace }}\pwsh\scr ${{ github.workspace }} /s
+          xcopy ${{ github.workspace }}\pwsh\scr ${{ github.workspace }} /s /d
       - name: Deploy Advinst
         uses: caphyon/advinst-github-action@main
         with:
